@@ -1,0 +1,336 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  .nav1{
+    margin-bottom:1rem;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: space-around;
+  }
+  .one{
+    width: 250px;
+    cursor: pointer;
+  
+  }
+  #h1{
+    font-size: 100px;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  #h2{
+    position: relative;
+    bottom: 90px;
+    left: 55px;
+  }
+  #h3{
+    position: relative;
+    bottom: 95px;
+    left: 55px;
+  }
+  #h1,#h2,#h3{
+    color: black;
+    text-shadow: #A47551;
+  }
+  .nav1 .one p{
+    position: relative;
+    bottom: 95px;
+    left: 55px;
+    color: grey;
+  }
+  .nav1 .two{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .nav2{
+    position: sticky;
+    top: 0;
+    background-color: rgb(241, 239, 239);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid rgba(135, 206, 235,0.3);
+    z-index: 101;
+  
+  
+  }
+  .nav2 ul{
+    width: 60%;
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+  }
+  .nav2 ul li a{
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    font-weight: bolder;
+    
+  }
+  .nav2 input{
+    padding: 1.3rem;
+    background-color: rgba(10, 132, 180,1);
+    cursor: pointer;
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+    border: none;
+  }
+  .nav2 ul li a:hover{
+    transition: all 0.4s;
+    color: rgb(10, 152, 208);
+    border-bottom: 0.1px solid rgb(10, 152, 208);
+  }
+  .nav2 input:hover{
+    transition: all 0.4s;
+    background-color: rgb(22, 91, 119);
+  }
+  .landingimg{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    
+  }
+  .apply{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 350px;
+    
+  }
+  .apply .left{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: rgba(10, 132, 180,1);
+    box-shadow: 10px 10px 15px skyblue;
+  }
+  .apply .info{
+    width: 40%;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 10px 10px 15px skyblue;
+  }
+  
+  .inp{
+    padding: 1rem;
+    width:45%;
+    margin: 5px;
+  }
+  .details{
+    position: relative;
+    bottom: 550px;
+    left: 800px;
+    width: 35%;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 15px 15px 20px ;
+  }
+  .details h1{
+    font-size: xx-large ;
+  }
+  .details h1 span{
+    color: rgba(10, 132, 180,1);
+  }
+  .details p{
+    color: grey;
+    margin-bottom: 1.5rem;
+  }
+  .buttons{
+    display: flex;
+    
+  }
+  .buttons input{
+    padding: 0.7rem;
+    border-radius: 1.5rem;
+    margin-right: 1rem;
+    border: none;
+    background-color: rgb(202, 202, 202);
+    color: black;
+   
+  }
+  .buttons :nth-child(2){
+    background-color: rgba(10, 132, 180,1);
+    color: white;
+  }
+  .buttons :nth-child(2):hover{
+    transition: all 0.4s;
+    background-color: rgb(202, 202, 202);
+    color: black;
+  }
+  .buttons :nth-child(1):hover{
+    transition: all 0.4s;
+    background-color: rgba(10, 132, 180,1);
+    color: white;
+  }
+  .right{
+    text-align: center;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  .right input{
+    padding: 10px;
+    width: 25%;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(61, 167, 209);
+  }
+  .right input:hover{
+    transition: all 0.4s;
+    background-color:rgba(10, 132, 180,1);
+  }
+  .teams{
+    position: relative;
+    bottom: 250px;
+  }
+  .teams h1{
+    font-size: xx-large;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .cards{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+   
+  }
+  .card{
+    width: 18%;
+    height: 325px;
+    overflow: hidden;
+    transition: all 1s ease-in;
+    border: 1px solid rgba(157, 155, 155,0.5);
+    
+  }
+  .card img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    z-index: 100;
+    position: relative;
+    top: 0;
+  }
+  .upper{
+    background-color:rgba(10, 132, 180,1);
+    height: 0;
+    width: 100%;
+    z-index: 98;
+    transition: all 5 sec ease-in;
+    text-align: center;
+    
+  }
+  .upper h1{
+    margin-bottom: 0;
+  }
+  .upper h2{
+    margin-top: 1.5rem;
+    margin-bottom: 5px;
+  }
+  .card:hover{
+    transition: all 0s;
+    transition: border-radius 1s;
+    border: 2px solid rgb(10, 132, 180);
+    box-shadow: 10px 10px 15px grey;
+    border-radius: 20px;
+  }
+  .card:hover img{
+    transition: 1s ease;
+    opacity: 0.5;
+  }
+  .card:hover .upper{
+    transition: height 1.5s ease;
+    height: 65%;
+    color: white;
+  
+  }
+  
+  .lower{
+    height: 10%;
+    text-align: center;
+    padding: 5px;
+  }
+  .lower h1{
+    margin: 0;
+  }
+  .lower p{
+    color: rgb(10, 132, 180);
+  }
+  .footer1{
+    position: relative;
+    bottom: 45px;
+    padding: 3rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    background-color: rgb(44, 43, 43);
+   color: grey;
+  }
+  .footer1 h1{
+    color: whitesmoke;
+    font-family: sans-serif;
+  }
+  .footer1 .about{
+    width: 300px;
+  }
+  .footer1 .links{
+    width: 250px;
+  }
+  .footer1 .lists{
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer1 .lists ul{
+    list-style-type:none ;
+  }
+  .footer1 .appoint form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  
+  }
+  .footer1 .appoint form input{
+    padding: 0.3rem;
+    width: 250px;
+    background-color:rgb(44, 43, 43) ;
+  }
+  #s-u-b{
+    width: 100px;
+    color: white;
+  }
+  .footer2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 3rem;
+    background-color: rgba(10, 132, 180,1);
+    z-index: 99;
+  }
+  .footer2 p{
+    font-weight: bolder;
+  }
+  .footer2 p span{
+    color: white;
+  }
+  .footer1 .lists ul li:hover{
+    transition: all 0.3s;
+    list-style-type: disc;
+    color: aqua;
+    list-style-position: inside;
+  }
