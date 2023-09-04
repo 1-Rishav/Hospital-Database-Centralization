@@ -31,8 +31,16 @@ const userSchema = new mongoose.Schema({
   password: String,
   googleId: String,
   secret: String,
+  
 });
 
+const appoinmentSchema =new mongoose.Schema({
+  name:String,
+  department:String,
+  doctor:String,
+  date:Date
+})
+const Appoinment = new mongoose.model("Appoinment" , appoinmentSchema);
 userSchema.plugin(passportlocalmongoose);
 userSchema.plugin(findOrCreate);
 const User = new mongoose.model("User", userSchema);
@@ -71,6 +79,19 @@ passport.use(
   )
 );
 
+app.post("/appoint" , (req, res) => {
+  const name=req.body.person;
+  const department=req.body.department;
+  const doctor=req.body.doctor;
+  const date=req.body.date;
+  const appoinment=new Appoinment({
+    name:name,
+    department:department,
+    doctor:doctor,
+    date:date
+  })
+  appoinment.save();
+})
 app.get("/", function (req, res) {
   res.render("home");
 });
@@ -137,14 +158,7 @@ app.post("/submit", function (req, res) {
     });
 });
 
-app.get("/logout", function (req, res, next) {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
-  });
-});
+
 
 app.post("/register", function (req, res) {
   User.register({ username: req.body.username }, req.body.password)

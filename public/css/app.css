@@ -178,14 +178,14 @@
     margin-top: 5px;
     cursor: pointer;
   }
-  .right input{
+  .right button{
     padding: 10px;
     width: 25%;
     border-radius: 20px;
     border: none;
     background-color: rgb(61, 167, 209);
   }
-  .right input:hover{
+  .right button:hover{
     transition: all 0.4s;
     background-color:rgba(10, 132, 180,1);
   }
