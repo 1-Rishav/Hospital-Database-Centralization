@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportlocalmongoose = require("passport-local-mongoose");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const app = express();
 
@@ -63,21 +63,18 @@ passport.deserializeUser(function (user, cb) {
   });
 });
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/secrets",
-      UserProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-    },
-    function (accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
-    }
-  )
-);
+passport.use(new GoogleStrategy({
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: "http://localhost:3000/auth/google/SRM-DENTAL",
+  userProfileURL:"https://www.googleapis.com/oauth2/v3/userinfo"
+},
+function(accessToken, refreshToken, profile, cb) {
+  User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    return cb(err, user);
+  });
+}
+));
 
 app.post("/appoint" , (req, res) => {
   const name=req.body.person;
@@ -96,12 +93,11 @@ app.get("/", function (req, res) {
   res.render("home");
 });
 
-app.get("/auth/google", function (req, res) {
-  passport.authenticate("google", { scope: ["profile"] });
-});
+app.get("/auth/google",
+  passport.authenticate("google", { scope: ["profile"] }));
 
 app.get(
-  "/auth/google/secrets",
+  "/auth/google/SRM-DENTAL",
   passport.authenticate("google", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
@@ -127,15 +123,15 @@ app.get("/secrets", function (req, res) {
   })
 });
 
-app.get("/submit", function (req, res) {
+/* app.get("/submit", function (req, res) {
   if (req.isAuthenticated()) {
     res.render("submit");
   } else {
     res.redirect("/login");
   }
-});
+}); */
 
-app.post("/submit", function (req, res) {
+/* app.post("/submit", function (req, res) {
   const submittedSecret = req.body.secret;
   console.log(req.user.id);
 
@@ -156,7 +152,7 @@ app.post("/submit", function (req, res) {
     .catch(function (err) {
       console.log(err);
     });
-});
+}); */
 
 
 
