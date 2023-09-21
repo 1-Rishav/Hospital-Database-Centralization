@@ -1,0 +1,12 @@
+<%- include("partials/header 2"); -%>
+  <h2>Search Your Appoinment Email Id To View Prescription</h2>
+  <form action="/requestEmail" method="post">
+    <input type="text" name="postEmail" autocomplete="off">
+    <button type="submit" name="submit" >Submit</button>
+  </form>
+<h2>Search Your Appoinment Contact.no To View Appoinment Page</h2>
+  <form action="/requestNumber" method="post">
+    <input type="text" name="postNumber" autocomplete="off">
+    <button type="submit" name="submit" >Submit</button>
+  </form>
+<%- include("partials/footer 2"); -%>

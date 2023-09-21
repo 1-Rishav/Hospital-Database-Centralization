@@ -7,9 +7,19 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportlocalmongoose = require("passport-local-mongoose");
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
+const _ = require("lodash");
 const app = express();
+const play = require("play-sound");
+
+const Password = 123456;
+const homeStartingContent =
+  "Welcome to my corner of the internet! I'm Rishav Raj, a passionate and driven Web-Developer and Programmer. With a blend of creativity and expertise, I strive to be a professional Web-Developer and master in DSA , craft visually stunning designs that communicate powerful narratives or develop innovative software solutions that solve real-world challenges";
+const aboutContent =
+  "<p>Welcome to my corner of the internet! I'm Rishav Raj, a passionate and driven Web-Developer and Programmer . With a blend of creativity and expertise, I strive to be a professional Web-Developer and master in DSA , craft visually stunning designs that communicate powerful narratives or develop innovative software solutions that solve real-world challenges</p>";
+
+("<p>A Journey of Curiosity</p>;");
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -31,19 +41,37 @@ const userSchema = new mongoose.Schema({
   password: String,
   googleId: String,
   secret: String,
-  
 });
 
-const appoinmentSchema =new mongoose.Schema({
-  name:String,
-  department:String,
-  doctor:String,
-  date:Date
-})
-const Appoinment = new mongoose.model("Appoinment" , appoinmentSchema);
+const appoinmentSchema = new mongoose.Schema({
+  Email: String,
+  Number: Number,
+  Name: String,
+  Department: String,
+  Doctor: String,
+  Date: Date,
+});
+const postSchema = {
+  hospitalname: String,
+  hospitalslogan: String,
+  doctorname: String,
+  qualification: String,
+  name: String,
+  email: String,
+  age: Number,
+  sex: String,
+  date: String,
+  medicine: String,
+  content: String,
+  address: String,
+  hospitalcontact: String,
+};
+
+const Post = mongoose.model("Post", postSchema);
 userSchema.plugin(passportlocalmongoose);
 userSchema.plugin(findOrCreate);
 const User = new mongoose.model("User", userSchema);
+const Appoinment = new mongoose.model("Appoinment", appoinmentSchema);
 
 passport.use(User.createStrategy());
 
@@ -63,38 +91,43 @@ passport.deserializeUser(function (user, cb) {
   });
 });
 
-passport.use(new GoogleStrategy({
-  clientID: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/SRM-DENTAL",
-  userProfileURL:"https://www.googleapis.com/oauth2/v3/userinfo"
-},
-function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    return cb(err, user);
-  });
-}
-));
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      callbackURL: "http://localhost:3000/auth/google/SRM-DENTAL",
+      userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+    },
+    function (accessToken, refreshToken, profile, cb) {
+      User.findOrCreate({ googleId: profile.id }, function (err, user) {
+        return cb(err, user);
+      });
+    }
+  )
+);
 
-app.post("/appoint" , (req, res) => {
-  const name=req.body.person;
-  const department=req.body.department;
-  const doctor=req.body.doctor;
-  const date=req.body.date;
-  const appoinment=new Appoinment({
-    name:name,
-    department:department,
-    doctor:doctor,
-    date:date
-  })
+app.post("/appoint", (req, res) => {
+  const appoinment = new Appoinment({
+    Email: req.body.email,
+    Number: req.body.tel,
+    Name: req.body.person,
+    Department: req.body.department,
+    Doctor: req.body.doctor,
+    Date: req.body.date,
+  });
   appoinment.save();
-})
+
+  res.redirect("/home2");
+});
 app.get("/", function (req, res) {
   res.render("home");
 });
 
-app.get("/auth/google",
-  passport.authenticate("google", { scope: ["profile"] }));
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile"] })
+);
 
 app.get(
   "/auth/google/SRM-DENTAL",
@@ -113,48 +146,16 @@ app.get("/register", function (req, res) {
 });
 
 app.get("/secrets", function (req, res) {
-  User.find({ "secret": { $ne: null } }).then(function (foundUsers) {
-    if (foundUsers) {
-      res.render("secrets", { usersWithSecrets: foundUsers });
-    }
-  })
-  .catch(function (err) {
-    console.log(err);
-  })
-});
-
-/* app.get("/submit", function (req, res) {
-  if (req.isAuthenticated()) {
-    res.render("submit");
-  } else {
-    res.redirect("/login");
-  }
-}); */
-
-/* app.post("/submit", function (req, res) {
-  const submittedSecret = req.body.secret;
-  console.log(req.user.id);
-
-  User.findById(req.user.id)
-    .then(function (foundUser) {
-      if (foundUser) {
-        foundUser.secret = submittedSecret;
-        foundUser
-          .save()
-          .then(function () {
-            res.redirect("/secrets");
-          })
-          .catch(function (err) {
-            console.log(err);
-          });
+  User.find({ secret: { $ne: null } })
+    .then(function (foundUsers) {
+      if (foundUsers) {
+        res.render("secrets", { usersWithSecrets: foundUsers });
       }
     })
     .catch(function (err) {
       console.log(err);
     });
-}); */
-
-
+});
 
 app.post("/register", function (req, res) {
   User.register({ username: req.body.username }, req.body.password)
@@ -179,12 +180,138 @@ app.post("/login", function (req, res) {
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, function () {
-        res.redirect("/secrets");
+        res.redirect("/home2");
       });
     }
   });
 });
 
+app.get("/home2", function (req, res) {
+  res.render("home 2", { startingContent: homeStartingContent });
+});
+
+app.get("/about", function (req, res) {
+  res.render("about");
+});
+
+app.get("/staff", function (req, res) {
+  res.render("staffpass");
+});
+app.get("/client", (req, res) => {
+  res.render("client");
+});
+
+app.post("/staffpass", function (req, res) {
+  const password = req.body.password;
+  if (password == Password) {
+    res.render("compose.ejs");
+  } else {
+    console.log("err");
+  }
+});
+
+app.post("/compose", function (req, res) {
+  const post = new Post({
+    hospitalname: req.body.postHospital,
+    hospitalslogan: req.body.postSlogan,
+    doctorname: req.body.postDoctor,
+    qualification: req.body.postQualification,
+    name: req.body.postTitle,
+    email: req.body.postEmail,
+    age: req.body.postAge,
+    sex: req.body.postSex,
+    date: req.body.postDate,
+    medicine: req.body.postMedicines,
+    content: req.body.postBody,
+    hospitaladdress: req.body.postAddress,
+    hospitalcontact: req.body.postContact,
+  });
+  post.save();
+  res.send("Thank You");
+});
+
+app.post("/requestEmail", (req, res) => {
+  Post.findOne({ email: req.body.postEmail })
+    .then(function (post) {
+      res.render("post", {
+        hospitalname: post.hospitalname,
+        hospitalslogan: post.hospitalslogan,
+        doctorname: post.doctorname,
+        qualification: post.qualification,
+        name: post.name,
+        email: post.email,
+        age: post.age,
+        sex: post.sex,
+        date: post.date,
+        medicine: post.medicine,
+        content: post.content,
+        hospitaladdress: post.hospitaladdress,
+        hospitalcontact: post.hospitalcontact,
+      });
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+});
+
+app.post("/requestNumber", (req, res) => {
+  Appoinment.findOne({ Number: req.body.postNumber })
+    .then(function (appoinment) {
+      res.render("appoinment", {
+        Email: appoinment.Email,
+        Number: appoinment.Number,
+        Name: appoinment.Name,
+        Department: appoinment.Department,
+        Doctor: appoinment.Doctor,
+        date: appoinment.Date,
+      });
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+});
+app.get("/home2:postId", function (req, res) {
+  const requestedName = req.params.postId;
+  Post.findOne({ email: requestedName })
+    .then(function (post) {
+      res.render("post", {
+        hospitalname: post.hospitalname,
+        hospitalslogan: post.hospitalslogan,
+        doctorname: post.doctorname,
+        qualification: post.qualification,
+        name: post.name,
+        email: post.email,
+        age: post.age,
+        sex: post.sex,
+        date: post.date,
+        medicine: post.medicine,
+        content: post.content,
+        hospitaladdress: post.hospitaladdress,
+        hospitalcontact: post.hospitalcontact,
+      });
+    })
+    .then(function (err) {
+      console.log(err);
+    });
+});
+
+app.get("/about:appointId", (req, res) => {
+  const requestedappoint = req.params.appointId;
+  Appoinment.findOne({ Number: requestedappoint })
+    .then(function (appoinment) {
+      res.render("appoinment", {
+        Email: appoinment.Email,
+        Number: appoinment.Number,
+        Name: appoinment.Name,
+        Department: appoinment.Department,
+        Doctor: appoinment.Doctor,
+        date: appoinment.Date,
+      });
+    })
+    .then(function (err) {
+      console.log(err);
+    });
+});
 app.listen(3000, function () {
   console.log("Successfully started port on 3000");
 });
