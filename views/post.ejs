@@ -1,16 +1,34 @@
 <%- include("partials/header 2"); -%>
+<div class="post">
+<div class="information">
 <h1 id="hospital"><%=hospitalname%></h1>
 <h4 id="slogan"><%= hospitalslogan %></h4>
 <h2 id="doctor"><%=doctorname%></h2>
 <h4 id="qualify"><%= qualification %></h4>
+</div>
+<div class="prescription">
+<h2><%="Name"%></h2>
 <h3 id="name"><%=name%></h3>
+<h2><%="Email-id"%></h2>
 <h3 id="email"><%=email%></h3>
+<h2><%="Age"%></h2>
 <h3 id="age"><%=age%></h3>
+<h2><%="Sex"%></h2>
 <h3 id="sex"><%=sex%></h3>
+<h2><%="Date"%></h2>
 <h3 id="date"><%=date%></h3>
+<h2><%="Medicines"%></h2>
 <h3 id="medicine"><%= medicine %></h3>
-<p id="content"><%=content%></p>
+<h2><%="Test"%></h2>
+<h3 id="test"><%= test %></h3>
+<h2><%="Description"%></h2>
+<h3 id="content"><%=content%></h3>
+<div class="hospitalfooter">
+<h2><%="Address:"%></h2>
 <h3 id="address"><%=hospitaladdress%></h3>
+<h2><%="Contact no.:"%></h2>
 <h3 id="hospitalcontact"><%=hospitalcontact%></h3>
-  
+</div>
+</div>
+</div>
 <%- include("partials/footer 2"); -%>
