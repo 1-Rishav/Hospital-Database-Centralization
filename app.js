@@ -233,7 +233,7 @@ app.post("/compose", function (req, res) {
 });
 
 app.post("/requestEmail", (req, res) => {
-  Post.findOne({ email: req.body.postEmail })
+  Post.findOne({ email: req.body.postEmail, name:req.body.postName})
     .then(function (post) {
       res.render("post", {
         hospitalname: post.hospitalname,
@@ -258,7 +258,7 @@ app.post("/requestEmail", (req, res) => {
 });
 
 app.post("/requestNumber", (req, res) => {
-  Appoinment.findOne({ Number: req.body.postNumber })
+  Appoinment.findOne({ Number: req.body.postNumber, Name: req.body.postName})
     .then(function (appoinment) {
       res.render("appoinment", {
         Email: appoinment.Email,
@@ -273,49 +273,7 @@ app.post("/requestNumber", (req, res) => {
       console.log(err);
     });
 });
-app.get("/home2:postId", function (req, res) {
-  const requestedName = req.params.postId;
-  Post.findOne({ email: requestedName })
-    .then(function (post) {
-      res.render("post", {
-        hospitalname: post.hospitalname,
-        hospitalslogan: post.hospitalslogan,
-        doctorname: post.doctorname,
-        qualification: post.qualification,
-        name: post.name,
-        email: post.email,
-        age: post.age,
-        sex: post.sex,
-        date: post.date,
-        medicine: post.medicine,
-        test: post.test,
-        content: post.content,
-        hospitaladdress: post.hospitaladdress,
-        hospitalcontact: post.hospitalcontact,
-      });
-    })
-    .then(function (err) {
-      console.log(err);
-    });
-});
 
-app.get("/about:appointId", (req, res) => {
-  const requestedappoint = req.params.appointId;
-  Appoinment.findOne({ Number: requestedappoint })
-    .then(function (appoinment) {
-      res.render("appoinment", {
-        Email: appoinment.Email,
-        Number: appoinment.Number,
-        Name: appoinment.Name,
-        Department: appoinment.Department,
-        Doctor: appoinment.Doctor,
-        date: appoinment.Date,
-      });
-    })
-    .then(function (err) {
-      console.log(err);
-    });
-});
 app.listen(3000, function () {
   console.log("Successfully started port on 3000");
 });
