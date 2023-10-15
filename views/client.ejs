@@ -1,15 +1,17 @@
 <%- include("partials/header 2"); -%>
 <div class="requestEmail">
-  <h2>Search Your Appoinment Email Id To View Prescription</h2>
+  <h2>Search Your Appoinment Email Id and Name To View Prescription</h2>
   <form  action="/requestEmail" method="post">
-    <input class="filler" type="text" name="postEmail" autocomplete="off">
+    <input class="filler" placeholder="Email"type="text" name="postEmail" autocomplete="off">
+    <input class="filler" placeholder="Name" type="text" name="postName" autocomplete="off">
     <button class="submit1" type="submit" name="submit" >Submit</button>
   </form>
 </div>
 <div class="requestNumber">
-<h2>Search Your Appoinment Contact.no To View Appoinment Page</h2>
+<h2>Search Your Appoinment Contact.no and Name To View Appoinment Page</h2>
   <form action="/requestNumber" method="post">
-    <input class="filler" type="text" name="postNumber" autocomplete="off">
+    <input class="filler" type="text" placeholder="Number"name="postNumber" autocomplete="off">
+    <input class="filler" type="text" placeholder="Name"name="postName" autocomplete="off">
     <button class="submit" type="submit" name="submit" >Submit</button>
   </form></div>
 
