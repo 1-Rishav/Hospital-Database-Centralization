@@ -1,9 +1,16 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bacasime+Antique&display=swap');
+
+* {margin: 0;
+  padding:0;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 900;
+  letter-spacing: 0.01rem;
+  font-size: large;
+  box-sizing: border-box;
     scroll-behavior: smooth;
-  }
+}
+
   .nav1{
     margin-bottom:1rem;
     width: 100%;
@@ -333,5 +340,24 @@
     list-style-type: disc;
     color: aqua;
     list-style-position: inside;
+  }
+  .aboutus{
+    text-align:start;
+    margin-left:8rem;
+    margin-right:8rem;
+    width:auto;
+  }
+  .aboutus h1{
+    margin-top:1rem;
+  }
+  .department{
+    text-align:start;
+    margin-left:8rem;
+    margin-right:8rem;
+    width:auto;
+    max-height: max-content;
+  }
+  .department h1{
+    margin-top:1rem;
   }
   
