@@ -1,0 +1,38 @@
+<style>
+    .authorize{
+  padding:5rem;
+  position:absolute;
+  border:1px solid black;
+  border-style: none;
+  background-color: rgb(239, 238, 238);
+  margin-left: 32rem;
+  margin-top:12rem;
+  text-align: center;
+  border-radius: 3rem;
+  box-shadow: 5px 5px 3px rgb(203, 202, 202);
+ }
+ .submit{
+    margin-right:15rem;
+    margin-top:1rem;
+    background-color: rgb(207, 207, 126);
+    border-style: none;
+    padding:0.8rem;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 1rem;
+ }
+ .submit:hover{
+    transition:all 0.5s ease-in-out;
+    color:firebrick;
+    background-color: rgb(105, 105, 52);;
+    cursor:pointer;
+ }
+</style>
+<div class="authorize">
+<h1 >Thank You </h1>
+<form action="/tryagain3" method="post">
+    <button class="submit" type="submit" name="submit" >Go Home</button>
+</form>
+</div>
