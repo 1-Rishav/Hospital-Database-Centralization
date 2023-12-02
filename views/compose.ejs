@@ -1,48 +1,46 @@
+<%- include("partials/header2"); -%>
 
-<%- include("partials/header 2"); -%>
+  <h1>Compose</h1>
+  <form class="" action="/compose" method="post">
+    <div class="form-group">
+      <label>Hospital Name</label>
+      <input class="form-control" type="text" name="postHospital">
+      <label>Hospital Slogan</label>
+      <input class="form-control" type="text" name="postSlogan">
+      <label>Doctor Name</label>
+      <input class="form-control" type="text" name="postDoctor" autocomplete="off">
+      <label>Doctor Qualification</label>
+      <input class="form-control" type="text" name="postQualification" autocomplete="off">
+      <label>Name</label>
+      <input class="form-control" type="text" name="postName" autocomplete="off" autofocus>
+      <label>Patient Email</label>
+      <input class="form-control" type="text" name="postEmail" autocomplete="off">
+      <label>Age</label>
+      <input class="form-control" type="text" name="postAge" autocomplete="off">
+      <label>Sex</label>
+      <input class="form-control" type="text" name="postSex" autocomplete="off">
+      <label>Date</label>
+      <input class="form-control" type="text" name="postDate" autocomplete="off">
+      <label>Prescribe Medicines</label>
+      <textarea class="form-control" type="text" name="postMedicines" autocomplete="off" rows="5"></textarea>
+      <label>Test</label>
+      <textarea class="form-control" type="text" name="postTest" autocomplete="off" rows="5"></textarea>
+      <label>Description</label>
+      <textarea class="form-control" name="postBody" rows="6"></textarea>
+      <label>Hospital Address</label>
+      <input class="form-control" type="text" name="postAddress" autocomplete="off">
+      <label>Hospital Contact</label>
+      <input class="form-control" type="text" name="postContact" autocomplete="off">
+    </div>
 
-    <h1>Compose</h1>
-    <form class="" action="/compose" method="post">
-      <div class="form-group">
-        <label>Hospital Name</label>
-        <input class="form-control" type="text" name="postHospital">
-        <label>Hospital Slogan</label>
-        <input class="form-control" type="text" name="postSlogan">
-        <label>Doctor Name</label>
-        <input class="form-control" type="text" name="postDoctor" autocomplete="off">
-        <label>Doctor Qualification</label>
-        <input class="form-control" type="text" name="postQualification" autocomplete="off">
-        <label>Name</label>
-        <input class="form-control" type="text" name="postName" autocomplete="off" autofocus>
-        <label>Patient Email</label>
-        <input class="form-control" type="text" name="postEmail" autocomplete="off">
-        <label>Age</label>
-        <input class="form-control" type="text" name="postAge" autocomplete="off">
-        <label>Sex</label>
-        <input class="form-control" type="text" name="postSex" autocomplete="off">
-        <label>Date</label>
-        <input class="form-control" type="text" name="postDate" autocomplete="off">
-        <label>Prescribe Medicines</label>
-        <textarea class="form-control" type="text" name="postMedicines" autocomplete="off" ></textarea>
-        <label>Test</label>
-        <textarea class="form-control" type="text" name="postTest" autocomplete="off" ></textarea>
-        <label>Description</label>
-        <textarea class="form-control" name="postBody" ></textarea>
-        <label>Hospital Address</label>
-        <input class="form-control" type="text" name="postAddress" autocomplete="off">
-        <label>Hospital Contact</label>
-        <input class="form-control" type="text" name="postContact" autocomplete="off">
-      </div>
-      
-      <button id="play" class="btn btn-primary" type="submit" name="button">Publish</button>
-    </form>
-    <script>
-      let play = document.getElementById("play");
-      function button() {
-        const audio = new Audio("/css/audio/audio.mp3");
-        audio.play()
-      }
-      play.addEventListener("click", button);
-    </script>
-    <%- include("partials/footer 2"); -%>
-
+    <button id="play" class="btn btn-primary" type="submit" name="button">Publish</button>
+  </form>
+  <script>
+    let play = document.getElementById("play");
+    function button() {
+      const audio = new Audio("/css/audio/audio.mp3");
+      audio.play()
+    }
+    play.addEventListener("click", button);
+  </script>
+  <%- include("partials/footer 2"); -%>
